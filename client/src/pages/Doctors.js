@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Doctors from '../components/doctors';
+import Topbar from '../components/topbar';
 import {
   Box,
-  Typography,
   Grid,
   Button,
 } from '@mui/material';
@@ -24,22 +24,7 @@ function MyDoctors() {
 
   return (
     <div>
-      <Typography variant="h1" align="center" gutterBottom>
-        <Box
-          component="span"
-          sx={{
-            backgroundImage: 'url(https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg)',
-            backgroundSize: '100%',
-            color: 'black',
-            display: 'inline-block',
-            p: 20,
-            height: 380,
-            width: 1340,
-          }}
-        >
-          Our Doctors
-        </Box>
-      </Typography>
+      <Topbar name="Our Doctors"></Topbar>
       <Box sx={{ textAlign: 'center', mt: 2 }}>
         <Button onClick={() => setSpecialty('all')}>All Doctors</Button>
         <Button onClick={() => setSpecialty('oncology')}>Oncology</Button>
