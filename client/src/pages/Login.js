@@ -54,7 +54,7 @@ const Login = () => {
                
                 <Typography>
                     Do you have an account ?
-                    <Link href="../pages/Register">
+                    <Link href="../Register">
                         Register
                     </Link>
                 </Typography>
