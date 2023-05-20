@@ -14,6 +14,8 @@ export default function Navbar() {
         {/* <CustomLink to="/branches">Branches</CustomLink> */}
         <CustomLink to="/patinent">Patient</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
+
+
       </ul>
     </nav>
   )

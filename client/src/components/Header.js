@@ -3,6 +3,7 @@ import { Box, Button, styled, Typography } from "@mui/material";
 import { Link } from 'react-router-dom'
 //img
 import headerImg from '../assets/header.jpg'
+import Appointment from '../pages/Appointment';
 
 const Header = () => {
 
@@ -67,6 +68,8 @@ const Header = () => {
                 <Box>
                     <Button 
                     variant='contained'
+                    component={Link} 
+                    to='./Appointment'
                     sx={{
                         mr: 2,
                         px: 3, 
@@ -85,11 +88,11 @@ const Header = () => {
                         }
                     }}
                     >
-                        Make An Apointment
+                        Make An Appointment
                     </Button>
                     <Button 
                     component={Link} 
-                    to={'/about'}
+                    to=''
                     variant='outlined'
                     sx={{
                         px: 4, 
