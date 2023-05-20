@@ -11,6 +11,7 @@ import './App.css';
 // import React, { useState } from "react";
 
 import { Route, Routes } from "react-router-dom"
+import Appointment from "./pages/Appointment"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/patient" element={<Patient/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/appointment" element={<Appointment/>} />
         </Routes>
       </div>
     </>
