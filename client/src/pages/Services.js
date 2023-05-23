@@ -2,6 +2,7 @@ import Topbar from '../components/topbar';
 import React, {  useState } from "react";
 import ServiceCard from "../components/servicecomponent";
 import { Typography, Grid, Tab, Tabs } from "@mui/material";
+import { Box } from '@mui/system';
 
 
 const Service = () => {
@@ -54,7 +55,8 @@ const Service = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen" >
+      <Box style={{ backgroundColor: "#f0f0f0" }}>      
       <Topbar name="Our Services"></Topbar>
       <Tabs
         value={value}
@@ -75,7 +77,7 @@ const Service = () => {
           </Grid>
         ))}
       </Tabs>
-
+      </Box>
       </div>
     );
   };
