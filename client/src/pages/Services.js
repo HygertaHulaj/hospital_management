@@ -56,8 +56,9 @@ const Service = () => {
 
   return (
     <div className="h-screen" >
-      <Box style={{ backgroundColor: "#f0f0f0" }}>      
+           
       <Topbar name="Our Services"></Topbar>
+      <Box style={{ backgroundColor: "#f0f0f0"}}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -67,7 +68,7 @@ const Service = () => {
       >
       {service.map((service) => (
           <Grid container spacing={2}>
-            <Grid item key={service.id} p={6}  >
+            <Grid item key={service.id} p={6} sx={{ marginTop: "50px" }} >
               <ServiceCard
                 title={service.title}
                 description={service.description}
