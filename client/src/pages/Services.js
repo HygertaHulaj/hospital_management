@@ -1,7 +1,9 @@
 import Topbar from '../components/topbar';
 import React, {  useState } from "react";
 import ServiceCard from "../components/servicecomponent";
-import { Typography, Grid, Tab, Tabs } from "@mui/material";
+import Ourservice from "../components/ourservice";
+import ServiceGetStarted from "../components/serviceGetStarted";
+import { Typography, Grid, Tab, Tabs, Button } from "@mui/material";
 import { Box, margin } from '@mui/system';
 import frame402 from '../assets/Frame 402.png'
 import frame403 from '../assets/Frame 403.png'
@@ -60,39 +62,17 @@ const Service = () => {
     <div className="h-screen" >
            
       <Topbar name="Our Services"></Topbar>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px", margin:"26px",  backgroundColor: "#ADD8E6"}}>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-            <img
-              src={frame402}
-              alt="frame402"
-              style={{ padding: "85px", width: "100%", marginBottom: -15 }}
-            />
-            <Typography variant="h6" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-              Special Service
-            </Typography>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-            <img
-              src={frame406}
-              alt="frame406"
-              style={{ padding: "85px", width: "100%", marginBottom: -15 }}
-            />
-            <Typography variant="h6" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-              24/7 Advanced Care
-            </Typography>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center" ,marginRight:"85px"}}>
-            <img
-              src={frame403}
-              alt="frame403"
-              style={{ width: "100%", marginBottom: -15,padding: "85px", }}
-            />
-            <Typography variant="h6" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-              Get Result Online
-            </Typography>
-            
-        </Box>
-        </Box>
+
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "26px", margin:"26px",  backgroundColor: "#ADD8E6"}}>
+        <ServiceGetStarted title="Special Service" icone={frame402} ></ServiceGetStarted>
+        <ServiceGetStarted title="24/7 Advanced Care" icone={frame406} ></ServiceGetStarted>
+        <ServiceGetStarted title="Get Result Online" icone={frame403} ></ServiceGetStarted>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin:"6px"}}>
+        <Ourservice title="Qualified Doctors"></Ourservice>
+        <Ourservice title="Emergency Helicopter"></Ourservice>
+        <Ourservice title="Leading Technology"></Ourservice>
+      </Box>
 
       <Box style={{ backgroundColor: "#f0f0f0",margin:"26px"}}>
       <Tabs
