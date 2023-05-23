@@ -2,8 +2,10 @@ import Topbar from '../components/topbar';
 import React, {  useState } from "react";
 import ServiceCard from "../components/servicecomponent";
 import { Typography, Grid, Tab, Tabs } from "@mui/material";
-import { Box } from '@mui/system';
-
+import { Box, margin } from '@mui/system';
+import frame402 from '../assets/Frame 402.png'
+import frame403 from '../assets/Frame 403.png'
+import frame406 from '../assets/Frame 406.png'
 
 const Service = () => {
 
@@ -58,7 +60,41 @@ const Service = () => {
     <div className="h-screen" >
            
       <Topbar name="Our Services"></Topbar>
-      <Box style={{ backgroundColor: "#f0f0f0"}}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px", margin:"26px",  backgroundColor: "#ADD8E6"}}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={frame402}
+              alt="frame402"
+              style={{ padding: "85px", width: "100%", marginBottom: -15 }}
+            />
+            <Typography variant="h6" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+              Special Service
+            </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={frame406}
+              alt="frame406"
+              style={{ padding: "85px", width: "100%", marginBottom: -15 }}
+            />
+            <Typography variant="h6" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+              24/7 Advanced Care
+            </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center" ,marginRight:"85px"}}>
+            <img
+              src={frame403}
+              alt="frame403"
+              style={{ width: "100%", marginBottom: -15,padding: "85px", }}
+            />
+            <Typography variant="h6" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+              Get Result Online
+            </Typography>
+            
+        </Box>
+        </Box>
+
+      <Box style={{ backgroundColor: "#f0f0f0",margin:"26px"}}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -78,6 +114,7 @@ const Service = () => {
           </Grid>
         ))}
       </Tabs>
+
       </Box>
       </div>
     );
