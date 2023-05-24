@@ -10,7 +10,13 @@ import {
   InputLabel,
   FormControlLabel,
   Checkbox,
+  ListItem,
+  ListItemText,
+  List,
+  ListItemIcon
 } from '@mui/material';
+import Topbar from '../components/topbar';
+
 
 const BloodDonation = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +33,7 @@ const BloodDonation = () => {
     message: '',
     saveAddress: false,
   });
+  const [bloodGroup, setBloodGroup] = useState('');
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -45,6 +52,9 @@ const BloodDonation = () => {
       birthdate: value,
     }));
   };
+  const handleBloodGroupChange = (event) => {
+    setBloodGroup(event.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -53,12 +63,63 @@ const BloodDonation = () => {
   };
 
   return (
-    <React.Fragment>
+    
+    <React.Fragment >
+      <Topbar name="Bood Doantion" ></Topbar>
+      <h1>Be a Hero: Make a Difference through Blood Donation</h1>
+      <h3><em>Every year, millions of lives are saved thanks to the selfless act of blood donation. By donating blood, you become a hero, contributing to the well-being and survival of people in need.
+         Whether it's for emergencies, surgeries, or ongoing medical treatments, your donation can make a significant impact.
+This entry aims to shed light on the importance of blood donation, the process involved, and the incredible benefits it brings to individuals and communities.</em></h3>
+      <Typography variant="h5" gutterBottom>
+        Conditions for Blood Donation:
+      </Typography>
+      <List  style={{ backgroundColor: "#f8f8f8", padding: "36px",borderRadius:" 4px",margin:"26px"}}>
+        <ListItem>
+          <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Be at least 18 years old (or according to local regulations)" />
+        </ListItem>
+        <ListItem>
+        <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Weigh at least 50 kilograms (110 pounds)" />
+        </ListItem>
+        <ListItem>
+          <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Be in good overall health" />
+        </ListItem>
+        <ListItem>
+          <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Have a valid identification document (e.g., driver's license, passport)" />
+        </ListItem>
+        <ListItem>
+          <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Not have donated blood within the last 56 days" />
+        </ListItem>
+        <ListItem>
+        <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Not have received a blood transfusion in the past 12 months" />
+        </ListItem>
+        <ListItem>
+        <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Not have traveled to certain countries with high-risk diseases within the last 3 years" />
+        </ListItem>
+        <ListItem>
+        <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Not have a history of drug use (intravenous)" />
+        </ListItem>
+        <ListItem>
+        <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Not have a history of certain medical conditions (e.g., HIV, hepatitis)" />
+        </ListItem>
+        <ListItem>
+        <span style={{fontsSize: "16px",marginRight: "8px"}} >&#8226;</span>
+          <ListItemText primary="Not have engaged in risky sexual behavior within the last 12 months" />
+        </ListItem>
+      </List>
       <Typography variant="h6" gutterBottom>
-        Your data
+        Donate Now
       </Typography>
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
+        <Grid container spacing={3}style={{margin: "26px",padding:"16px"}}>
           <Grid item xs={12} sm={6}>
             <TextField
               required
@@ -67,7 +128,7 @@ const BloodDonation = () => {
               label="First name"
               fullWidth
               autoComplete="given-name"
-              variant="standard"
+              variant="outlined"
               value={formData.firstName}
               onChange={handleChange}
             />
@@ -77,10 +138,9 @@ const BloodDonation = () => {
               required
               id="lastName"
               name="lastName"
-              label="Last name"
               fullWidth
               autoComplete="family-name"
-              variant="standard"
+              variant="outlined"
               value={formData.lastName}
               onChange={handleChange}
             />
@@ -93,7 +153,7 @@ const BloodDonation = () => {
               label="Address"
               fullWidth
               autoComplete="shipping address-line1"
-              variant="standard"
+              variant="outlined"
               value={formData.address1}
               onChange={handleChange}
             />
@@ -106,7 +166,7 @@ const BloodDonation = () => {
               label="Your phone number"
               fullWidth
               autoComplete="shipping address-line2"
-              variant="standard"
+              variant="outlined"
               value={formData.address2}
               onChange={handleChange}
             />
@@ -119,7 +179,7 @@ const BloodDonation = () => {
               label="Birthdate"
               type="date"
               fullWidth
-              variant="standard"
+              variant="outlined"
               InputLabelProps={{
                 shrink: true,
               }}
@@ -135,7 +195,7 @@ const BloodDonation = () => {
               label="City"
               fullWidth
               autoComplete="shipping address-level2"
-              variant="standard"
+              variant="outlined"
               value={formData.city}
               onChange={handleChange}
             />
@@ -144,31 +204,27 @@ const BloodDonation = () => {
             <TextField
               id="state"
               name="state"
-              label="State/Province/Region"              fullWidth
-              variant="standard"
+              label="State/Province/Region"
+              fullWidth
+              variant="outlined"
               value={formData.state}
               onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <InputLabel id="service-label">Select your service</InputLabel>
-            <Select
-              required
-              id="service"
-              name="service"
-              labelId="service-label"
-              fullWidth
-              variant="standard"
-              value={formData.service}
-              onChange={handleChange}
-            >
-              <MenuItem value="emergency1">Emergency Service 1</MenuItem>
-              <MenuItem value="service2">Service 2</MenuItem>
-              <MenuItem value="service3">Service 3</MenuItem>
-              <MenuItem value="checkup">Regular Checkup</MenuItem>
-              <MenuItem value="surgery">Surgery</MenuItem>
-              <MenuItem value="therapy">Therapy</MenuItem>
-            </Select>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel>Blood Group</InputLabel>
+              <Select value={bloodGroup} onChange={handleBloodGroupChange} label="Blood Group">
+                <MenuItem value="A+">A+</MenuItem>
+                <MenuItem value="A-">A-</MenuItem>
+                <MenuItem value="B+">B+</MenuItem>
+                <MenuItem value="B-">B-</MenuItem>
+                <MenuItem value="AB+">AB+</MenuItem>
+                <MenuItem value="AB-">AB-</MenuItem>
+                <MenuItem value="O+">O+</MenuItem>
+                <MenuItem value="O-">O-</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -178,7 +234,7 @@ const BloodDonation = () => {
               label="Date"
               type="date"
               fullWidth
-              variant="standard"
+              variant="outlined"
               InputLabelProps={{
                 shrink: true,
               }}
@@ -194,7 +250,7 @@ const BloodDonation = () => {
               label="Time"
               type="time"
               fullWidth
-              variant="standard"
+              variant="outlined"
               InputLabelProps={{
                 shrink: true,
               }}
@@ -202,7 +258,7 @@ const BloodDonation = () => {
               onChange={handleChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} >
             <TextField
               required
               id="message"
@@ -210,7 +266,7 @@ const BloodDonation = () => {
               label="Message"
               fullWidth
               autoComplete="shipping country"
-              variant="standard"
+              variant="outlined"
               value={formData.message}
               onChange={handleChange}
             />
@@ -223,9 +279,10 @@ const BloodDonation = () => {
                   name="saveAddress"
                   checked={formData.saveAddress}
                   onChange={handleChange}
+                  required
                 />
               }
-              label="Use this address for payment details"
+              label="Have you fulfilled the aforementioned requirements?"
             />
           </Grid>
           <Grid item xs={12}>
