@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardMedia, Typography ,Button} from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Button, Link } from "@mui/material";
+import BloodDonation from './bloodDonation';
 
-const Patientaccess = ({ title, description, imageUrl }) => {
+const PatientAccess = ({ title, description, imageUrl }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -32,12 +33,19 @@ const Patientaccess = ({ title, description, imageUrl }) => {
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
-        <Button variant="contained" color="primary" size="small" style={{ marginTop: 10,marginBottom:"15px" }}>
-              Read More
+        <Button
+          component={Link}
+          to='./BloodDonation'
+          variant="contained"
+          color="primary"
+          size="small"
+          style={{ marginTop: 10, marginBottom: 15 }}
+        >
+          Read More
         </Button>
       </CardContent>
     </Card>
   );
 };
 
-export default Patientaccess;
+export default PatientAccess;

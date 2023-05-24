@@ -14,7 +14,7 @@ const Ourservice = ({ title }) => {
               flexDirection: "column",
               alignItems: "center",
               width: "800px",
-              height:"350px",
+              height:"300px",
               border: "1px dashed #999",
               margin:"20px"
             }}

@@ -4,14 +4,14 @@ import Departments from "./pages/Departments"
 import Patient from "./pages/Patient"
 import MyDoctors from "./pages/Doctors"
 import Services from "./pages/Services"
- import Branches from "./pages/Branches"
+// import Branches from "./pages/Branches"
 import Login from "./pages/Login"
-import Register from "./pages/Register"
 import './App.css';
 // import React, { useState } from "react";
+// import Banner from "./s/banner";
 
 import { Route, Routes } from "react-router-dom"
-import Appointment from "./pages/Appointment"
+import BloodDonation from "./components/bloodDonation"
 
 function App() {
   return (
@@ -23,13 +23,14 @@ function App() {
           <Route path="/departments" element={<Departments/>} />
            <Route path="/services" element={<Services/>} />
           <Route path="/Doctors" element={<MyDoctors />} />
-           <Route path="/branches" element={<Branches/>}/> 
-          <Route path="/Patient" element={<Patient/>} />
+          {/* <Route path="/branches" element={<Branches/>}/> */}
+          <Route path="/patient" element={<Patient/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-          <Route path="/appointment" element={<Appointment/>} />
+          <Route path="/blooddonation" element={<BloodDonation/>} />
+          
         </Routes>
       </div>
+      
     </>
     
   )
