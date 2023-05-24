@@ -4,7 +4,7 @@ import Departments from "./pages/Departments"
 import Patient from "./pages/Patient"
 import MyDoctors from "./pages/Doctors"
 import Services from "./pages/Services"
-// import Branches from "./pages/Branches"
+import Branches from "./pages/Branches"
 import Login from "./pages/Login"
 import './App.css';
 // import React, { useState } from "react";
@@ -23,7 +23,7 @@ function App() {
           <Route path="/departments" element={<Departments/>} />
            <Route path="/services" element={<Services/>} />
           <Route path="/Doctors" element={<MyDoctors />} />
-          {/* <Route path="/branches" element={<Branches/>}/> */}
+           <Route path="/branches" element={<Branches/>}/> 
           <Route path="/patient" element={<Patient/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/blooddonation" element={<BloodDonation/>} />
