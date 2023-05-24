@@ -63,12 +63,12 @@ const Service = () => {
            
       <Topbar name="Our Services"></Topbar>
 
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "26px", margin:"26px",  backgroundColor: "#ADD8E6"}}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px", margin:"56px",  backgroundColor: "#ADD8E6"}}>
         <ServiceGetStarted title="Special Service" icone={frame402} ></ServiceGetStarted>
         <ServiceGetStarted title="24/7 Advanced Care" icone={frame406} ></ServiceGetStarted>
         <ServiceGetStarted title="Get Result Online" icone={frame403} ></ServiceGetStarted>
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin:"6px"}}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin:"36px"}}>
         <Ourservice title="Qualified Doctors"></Ourservice>
         <Ourservice title="Emergency Helicopter"></Ourservice>
         <Ourservice title="Leading Technology"></Ourservice>
