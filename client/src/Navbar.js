@@ -14,6 +14,7 @@ export default function Navbar() {
         <CustomLink to="/branches">Branches</CustomLink> 
         <CustomLink to="/patient">Patient</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
+        <CustomLink to="/bloodDonation">bloodDonation</CustomLink>
 
 
       </ul>
