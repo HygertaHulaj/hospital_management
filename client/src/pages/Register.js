@@ -92,6 +92,14 @@ const Register = () => {
           />
           <TextField
             fullWidth
+            label='surname'
+            placeholder='Enter your surname'
+            name='surname'
+            value={formData.surname}
+            onChange={handleChange}
+          />
+          <TextField
+            fullWidth
             label='Email'
             placeholder='Enter your email'
             name='email'
@@ -113,6 +121,22 @@ const Register = () => {
           </FormControl>
           <TextField
             fullWidth
+            label='birthdate'
+            placeholder='Enter your birthdate'
+            name='birthdate'
+            value={formData.birthdate}
+            onChange={handleChange}
+          />
+          <TextField
+            fullWidth
+            label='Address'
+            placeholder='Enter your address'
+            name='address'
+            value={formData.address}
+            onChange={handleChange}
+          />
+          <TextField
+            fullWidth
             label='Phone Number'
             placeholder='Enter your phone number'
             name='phone_number'
@@ -126,15 +150,6 @@ const Register = () => {
             type='password'
             name='password'
             value={formData.password}
-            onChange={handleChange}
-          />
-          <TextField
-            fullWidth
-            label='Confirm Password'
-            placeholder='Confirm your password'
-            type='password'
-            name='confirm_password'
-            value={formData.confirm_password}
             onChange={handleChange}
           />
           <FormControlLabel
