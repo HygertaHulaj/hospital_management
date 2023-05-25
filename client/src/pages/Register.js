@@ -7,6 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+
 const Register = () => {
   const paperStyle = { padding: 20, width: 300, margin: '0 auto' };
   const headerStyle = { margin: 0 };
@@ -15,12 +16,14 @@ const Register = () => {
 
   const [formData, setFormData] = useState({
     name: '',
+    surname: '',
     email: '',
     gender: '',
-    phone_number: '',
+    date_of_birth: '',
+    address: '',
+    contact_details: '',
     password: '',
-    confirm_password: '',
-    terms_accepted: false
+    // terms_accepted: false
   });
 
   const handleChange = (event) => {
@@ -42,7 +45,7 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Make a POST request to the FastAPI endpoint
-    fetch('/register', {
+    fetch('http://localhost:8000/patients/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -55,15 +58,17 @@ const Register = () => {
           // Reset the form data if needed
           setFormData({
             name: '',
+            surname: '',
             email: '',
             gender: '',
-            phone_number: '',
+            date_of_birth: '',
+            address: '',
+            contact_details: '',
             password: '',
-            confirm_password: '',
-            terms_accepted: false
+            // terms_accepted: false
           });
         } else {
-          console.error('Registration failed');
+          // console.error('Registration failed');
         }
       })
       .catch((error) => {
@@ -92,7 +97,7 @@ const Register = () => {
           />
           <TextField
             fullWidth
-            label='surname'
+            label='Surname'
             placeholder='Enter your surname'
             name='surname'
             value={formData.surname}
@@ -106,7 +111,7 @@ const Register = () => {
             value={formData.email}
             onChange={handleChange}
           />
-          <FormControl component='fieldset' style={marginTop}>
+          {/* <FormControl component='fieldset' style={marginTop}>
             <FormLabel component='legend'>Gender</FormLabel>
             <RadioGroup
               aria-label='gender'
@@ -118,13 +123,21 @@ const Register = () => {
               <FormControlLabel value='female' control={<Radio />} label='Female' />
               <FormControlLabel value='male' control={<Radio />} label='Male' />
             </RadioGroup>
-          </FormControl>
+          </FormControl> */}
+              <TextField
+            fullWidth
+            label='gender'
+            placeholder='Enter your gender'
+            name='gender'
+            value={formData.gender}
+            onChange={handleChange}
+          />
           <TextField
             fullWidth
-            label='birthdate'
+            label='date_of_birth'
             placeholder='Enter your birthdate'
             name='birthdate'
-            value={formData.birthdate}
+            value={formData.date_of_birth}
             onChange={handleChange}
           />
           <TextField
@@ -140,7 +153,7 @@ const Register = () => {
             label='Phone Number'
             placeholder='Enter your phone number'
             name='phone_number'
-            value={formData.phone_number}
+            value={formData.contact_details}
             onChange={handleChange}
           />
           <TextField
@@ -152,10 +165,10 @@ const Register = () => {
             value={formData.password}
             onChange={handleChange}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox name='terms_accepted' checked={formData.terms_accepted} onChange={handleCheckboxChange} />}
             label='I accept the terms and conditions.'
-          />
+          /> */}
           <Button type='submit' variant='contained' color='primary'>Register</Button>
         </form>
       </Paper>
