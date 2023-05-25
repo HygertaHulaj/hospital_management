@@ -134,9 +134,9 @@ const Register = () => {
           />
           <TextField
             fullWidth
-            label='date_of_birth'
+            label='Date of Birth'
             placeholder='Enter your birthdate'
-            name='birthdate'
+            name='date_of_birth' // Updated attribute value
             value={formData.date_of_birth}
             onChange={handleChange}
           />
