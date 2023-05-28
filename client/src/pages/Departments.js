@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Typography, Button, Box } from "@mui/material";
 import DepartmentCard from "../components/DepartmentCard";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar"
 
 
 const DepartmentPage = () => {
@@ -92,6 +93,7 @@ const DepartmentPage = () => {
 
   return (
     <div style={{ height: "100vh", overflow: "hidden" }}>
+      <Navbar />
       <Typography variant="h4" component="h1" gutterBottom style={{backgroundColor: '#E1E3F8', color: 'black' }}>
         Departments
       </Typography>
