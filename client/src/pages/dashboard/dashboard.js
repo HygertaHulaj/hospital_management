@@ -3,6 +3,7 @@ import Layout from "../../components/dashboard/Layout"
 // import withAuth from "@/components/withAuth";
 import { BsPersonFill } from "react-icons/bs";
 import Header from "../../components/dashboard/Header";
+// import "../Global.css";
 const Dashboard = () => {
   const boxShadowStyle = { boxShadow: "rgba(0, 0, 0, 0.1) 0px 20px 80px" };
   // const { user } = useDashboardAuth();
