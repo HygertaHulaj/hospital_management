@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
-import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // import useNavigate from react-router-dom
+import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const Login = () => {
-    const [name, setUsername] = useState('');
-    const [password, setPassword] = useState('');
 
-    const paperStyle = { padding: 20, height: '70vh', width: 280, margin: "20px auto" }
-    const avatarStyle = { backgroundColor: '#1bbd7e' }
-    const btnstyle = { margin: '8px 0' }
+    const [email, setEmail] = useState('');
+
+
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // useNavigate hook
+
+    const paperStyle = { padding: 20, height: '70vh', width: 280, margin: "20px auto" };
+    const avatarStyle = { backgroundColor: '#1bbd7e' };
+    const btnstyle = { margin: '8px 0' };
 
     const handleSignIn = async () => {
         const response = await fetch('http://localhost:8000/patients/login', {
@@ -18,13 +23,21 @@ const Login = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, password })
+
+            body: JSON.stringify({ email, password })
+
         });
 
         if (response.ok) {
-            // handle successful login
+            const data = await response.json();
+            localStorage.setItem('token', data.jwtToken);
+            localStorage.setItem('user', JSON.stringify(data));
+            // Redirect to the dashboard/home page after successful login
+            navigate("/dashboard"); // Replace "/dashboard" with your actual route
         } else {
-            // handle login error
+            // Handle login error
+            const errorData = await response.json();
+            console.error("Login error: ", errorData.detail);
         }
     }
 
@@ -35,8 +48,10 @@ const Login = () => {
                     <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
                     <h2>Log In</h2>
                 </Grid>
-                <TextField label='Username' placeholder='Enter username' fullWidth required
-                    value={name} onChange={(e) => setUsername(e.target.value)} />
+
+                <TextField label='Email' placeholder='Email' fullWidth required
+                    value={email} onChange={(e) => setEmail(e.target.value)} />
+
                 <TextField label='Password' placeholder='Enter password' type='password' fullWidth required
                     value={password} onChange={(e) => setPassword(e.target.value)} />
                 <FormControlLabel
@@ -51,7 +66,7 @@ const Login = () => {
                 <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={handleSignIn}>
                     Log in
                 </Button>
-               
+
                 <Typography>
                     Do you have an account ?
                     <Link href="../Register">
@@ -60,7 +75,7 @@ const Login = () => {
                 </Typography>
             </Paper>
         </Grid>
-    )
+    );
 }
 
-export default Login
+export default Login;
