@@ -2,6 +2,7 @@ import Topbar from '../components/topbar';
 import React, {  useState } from "react";
 import ServiceCard from "../components/servicecomponent";
 import Ourservice from "../components/ourservice";
+import Navbar from "../Navbar"
 import ServiceGetStarted from "../components/serviceGetStarted";
 import { Typography, Grid, Tab, Tabs, Button } from "@mui/material";
 import { Box, margin } from '@mui/system';
@@ -60,6 +61,7 @@ const Service = () => {
 
   return (
     <div className="h-screen" >
+      <Navbar />
            
       <Topbar name="Our Services"></Topbar>
 
@@ -100,4 +102,4 @@ const Service = () => {
     );
   };
   
-  export default Service; 
+  export default Service;

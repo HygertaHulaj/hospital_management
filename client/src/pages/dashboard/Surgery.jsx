@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../components/dashboard/SideBar';
+import {
+  TextField,
+  Button,
+  Grid,
+  Link,
+  Box
+} from '@material-ui/core';
 
 const SurgeriesTable = () => {
   const [surgeries, setSurgeries] = useState([]);
@@ -90,6 +97,15 @@ const SurgeriesTable = () => {
   return (
     <Sidebar>
       <div>
+      <Grid item xs={12}>
+          <Box display="flex" justifyContent="flex-end">
+            <Link href="../dashboard/SurgeryAdd">
+              <Button variant="contained" color="primary">
+                Add a surgery
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
         <h2 className="text-2xl font-bold mb-4">Surgeries Table</h2>
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
@@ -106,32 +122,71 @@ const SurgeriesTable = () => {
             {surgeries.map((surgery) => (
               <tr key={surgery.surgery_id}>
                 <td className="px-4 py-2 border-b">{surgery.surgery_id}</td>
-                <td className="px-4 py-2 border-b">{surgery.surgery_type}</td>
-                <td className="px-4 py-2 border-b">{surgery.date}</td>
-                <td className="px-4 py-2 border-b">{surgery.patient_id}</td>
-                <td className="px-4 py-2 border-b">{surgery.doctor_id}</td>
                 <td className="px-4 py-2 border-b">
                   {editMode[surgery.surgery_id] ? (
-                    <button
-                      className="text-blue-500 underline"
+                    <TextField
+                      value={surgery.surgery_type}
+                      onChange={(e) => handleFieldChange(surgery.surgery_id, 'surgery_type', e.target.value)}
+                    />
+                  ) : (
+                    surgery.surgery_type
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[surgery.surgery_id] ? (
+                    <TextField
+                      value={surgery.date}
+                      onChange={(e) => handleFieldChange(surgery.surgery_id, 'date', e.target.value)}
+                    />
+                  ) : (
+                    surgery.date
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[surgery.surgery_id] ? (
+                    <TextField
+                      value={surgery.patient_id}
+                      onChange={(e) => handleFieldChange(surgery.surgery_id, 'patient_id', e.target.value)}
+                    />
+                  ) : (
+                    surgery.patient_id
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[surgery.surgery_id] ? (
+                    <TextField
+                      value={surgery.doctor_id}
+                      onChange={(e) => handleFieldChange(surgery.surgery_id, 'doctor_id', e.target.value)}
+                    />
+                  ) : (
+                    surgery.doctor_id
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[surgery.surgery_id] ? (
+                    <Button
+                      variant="contained"
+                      color="primary"
                       onClick={() => handleUpdate(surgery.surgery_id)}
                     >
                       Save
-                    </button>
+                    </Button>
                   ) : (
                     <>
-                      <button
-                        className="text-blue-500 underline mr-2"
+                      <Button
+                        variant="contained"
+                        color="primary"
                         onClick={() => handleEdit(surgery.surgery_id)}
                       >
                         Edit
-                      </button>
-                      <button
-                        className="text-red-500 underline"
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="secondary"
                         onClick={() => handleDelete(surgery.surgery_id)}
                       >
                         Delete
-                      </button>
+                      </Button>
                     </>
                   )}
                 </td>

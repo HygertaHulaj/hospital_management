@@ -1,144 +1,120 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Typography, Button, Box } from "@mui/material";
-import DepartmentCard from "../components/DepartmentCard";
-import { Link } from "react-router-dom";
-import Navbar from "../Navbar"
-
+import React, { useState } from 'react';
+import { TextField, Button } from '@mui/material';
 
 const DepartmentPage = () => {
-  const depContainerRef = useRef(null);
-  const [isScrollable, setIsScrollable] = useState(false);
+  const [formData, setFormData] = useState({
+    request_date: '',
+    blood_type: '',
+    contact_information: '',
+    request_status: '',
+    requested_units: 0,
+    urgency_level: '',
+    request_notes: '',
+  });
 
-  const departments = [
-    {
-      id: 1,
-      title: " Cardiology",
-      description: "Cardiology is a branch of medicine that deals with disorders of the heart and the cardiovascular system.",
-      imageUrl: "/cardiology.jpg",
-    },
-    {
-      id: 2,
-      title: "Neorology",
-      description: "Neurology is the branch of medicine dealing with the diagnosis of all conditions and disease the brain",
-      imageUrl: "/neurology.jpeg",
-    },
-    {
-      id: 3,
-      title: "Radiology",
-      description: "Radiology is the medical discipline that uses medical imaging to diagnose diseases and guide their treatment",
-      imageUrl: "/radiology.jpg",
-    },
-        {
-      id: 4,
-      title: "Urology",
-      description: "Urology is the branch of medicine that focuses on surgical and medical diseases of the urinary-tract system.",
-      imageUrl: "/urology.jpg",
-    },
-        {
-      id: 5,
-      title: "Pediatric",
-      description: "Pediatrics is the branch of medicine that involves the medical care of infants, children, and young adults. ",
-      imageUrl: "/pediatric.jpg",
-    },
-    {
-      id: 6,
-      title: "Stomatology",
-      description: "Stomatology the branch of medicine or dentistry concerned with the structures, functions, and diseases of the mouth.",
-      imageUrl: "/stomatology.jpg",
-    },
-    {
-      id: 7,
-      title: "Gynecology",
-      description: "Gynecology is the area of medicine for the treatment of women's diseases, especially reproductive organs. ",
-      imageUrl: "/gynecology.jpg",
-    },
-    {
-      id: 8,
-      title: "Pulmonary",
-      description: "Pulmonology or pneumology is known as respirology, respiratory medicine, or chest medicine.",
-      imageUrl: "/pulmology.jpg",
-    },
-        {
-      id: 9,
-      title: "Rhinoplasty",
-      description: "Rhinoplastyis medically called nasal reconstruction is a plastic surgery procedure for reconstructing the nose",
-      imageUrl: "/rhinoplasty.jpg",
-    },
-    {
-      id: 10,
-      title: "Physiotherapy",
-      description: "Physical therapy addresses the illnesses or injuries that limit a person's abilities to move and perform  activities.",
-      imageUrl: "/physiotherapy.jpg",
-    },
-    {
-      id: 11,
-      title: "Emergency",
-      description: "Emergency department is known as an accident and emergency department, emergency room department.",
-      imageUrl: "/emergency.jpg",
-    },
-      ];
-
-  useEffect(() => {
-    const container = depContainerRef.current;
-    setIsScrollable(container.scrollWidth > container.clientWidth);
-  }, []);
-
-  const scrollLeft = () => {
-    depContainerRef.current.scrollBy({ left: -depContainerRef.current.offsetWidth, behavior: "smooth" });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
-  const scrollRight = () => {
-    depContainerRef.current.scrollBy({ left: depContainerRef.current.offsetWidth, behavior: "smooth" });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Send the form data to the backend API
+    fetch('http://localhost:8000/blood_requests', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Data successfully submitted:', data);
+        // Reset the form
+        setFormData({
+          request_date: '',
+          blood_type: '',
+          contact_information: '',
+          request_status: '',
+          requested_units: 0,
+          urgency_level: '',
+          request_notes: '',
+        });
+      })
+      .catch((error) => {
+        console.error('Error submitting data:', error);
+      });
   };
 
   return (
-    <div style={{ height: "100vh", overflow: "hidden" }}>
-      <Navbar />
-      <Typography variant="h4" component="h1" gutterBottom style={{backgroundColor: '#E1E3F8', color: 'black' }}>
-        Departments
-      </Typography>
-      <Box
-        display="flex"
-        overflow="hidden"
-        ref={depContainerRef}
-      >
-        {departments.map((department) => (
-          <Box key={department.id} minWidth="350px" marginRight="0px" marginLeft="0px" >
-            <Link style={{ textDecoration: "none" }}>
-            <DepartmentCard
-              title={department.title}
-              description={department.description}
-              imageUrl={department.imageUrl}
-            />
-            </Link>
-          </Box>
-        ))}
-      </Box>
-      {isScrollable && (
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          padding="1rem"
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={scrollLeft}
-            sx={{ borderRadius: "50%" }}
-          >
-            &lt;
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={scrollRight}
-            sx={{ borderRadius: "50%" }}
-          >
-            &gt;
-          </Button>
-        </Box>
-      )}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <TextField
+        name="request_date"
+        label="Request Date"
+        value={formData.request_date}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <TextField
+        name="blood_type"
+        label="Blood Type"
+        value={formData.blood_type}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <TextField
+        name="contact_information"
+        label="Contact Information"
+        value={formData.contact_information}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <TextField
+        name="request_status"
+        label="Request Status"
+        value={formData.request_status}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <TextField
+        name="requested_units"
+        label="Requested Units"
+        type="number"
+        value={formData.requested_units}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <TextField
+        name="urgency_level"
+        label="Urgency Level"
+        value={formData.urgency_level}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <TextField
+        name="request_notes"
+        label="Request Notes"
+        value={formData.request_notes}
+        onChange={handleChange}
+        fullWidth
+        required
+        multiline
+        rows={4}
+      />
+      <Button type="submit" variant="contained" color="primary">
+        Submit
+      </Button>
+    </form>
   );
 };
 

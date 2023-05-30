@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Doctors from '../components/doctors';
 import Topbar from '../components/topbar';
+import Navbar from "../Navbar"
 import {
   Box,
   Grid,
@@ -24,6 +25,7 @@ function MyDoctors() {
 
   return (
     <div>
+      <Navbar />
       <Topbar name="Our Doctors"></Topbar>
       <Box sx={{ textAlign: 'center', mt: 2 }}>
         <Button onClick={() => setSpecialty('all')}>All Doctors</Button>

@@ -9,6 +9,7 @@ import hospital5 from "../assets/hospital5.jpg";
 import hospital6 from "../assets/hospital6.jpg";
 import hospital7 from "../assets/hospital7.jpg";
 import Topbar from '../components/topbar';
+import Navbar from "../Navbar"
 const Branches = () => {
     
   const BranchesList = [
@@ -64,10 +65,13 @@ const Branches = () => {
   ];
 
   return (
+    
+    <div>
+      <Navbar />
     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         <div>
     <Topbar name="Our Branches"></Topbar>
-  </div>
+        </div>
       {BranchesList.map((menu, index) => (
         <Card sx={{ maxWidth: "390px", display: "flex", m: 2 }} key={index}>
           <CardActionArea>
@@ -96,6 +100,7 @@ const Branches = () => {
         </Card>
       ))}
     </Box>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
   TextField,
@@ -16,50 +17,59 @@ import {
   ListItemIcon
 } from '@mui/material';
 import Topbar from '../components/topbar';
+const useStyles = makeStyles((theme) => ({
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+}));
 
 
 const BloodDonation = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    address1: '',
-    address2: '',
-    birthdate: '',
-    city: '',
-    state: '',
-    service: '',
-    date: '',
-    time: '',
-    message: '',
-    saveAddress: false,
-  });
-  const [bloodGroup, setBloodGroup] = useState('');
-
-  const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    const newValue = type === 'checkbox' ? checked : value;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: newValue,
-    }));
-  };
-
-  const handleBirthdateChange = (event) => {
-    const { value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      birthdate: value,
-    }));
-  };
-  const handleBloodGroupChange = (event) => {
-    setBloodGroup(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Perform form submission logic here
-    console.log('Form submitted!');
+  const classes = useStyles();
+  const [patientId, setPatientId] = useState('');
+  const [bloodType, setBloodType] = useState('');
+  const [contactDetails, setContactDetails] = useState('');
+  const [donationDate, setDonationDate] = useState('');
+  const [donationStatus, setDonationStatus] = useState('');
+  const [quantityDonated, setQuantityDonated] = useState('');
+  const [comments, setComments] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = {
+      patient_id: parseInt(patientId),
+      blood_type: bloodType,
+      contact_details: contactDetails,
+      donation_date: donationDate,
+      // donation_status: donationStatus,
+      quantity_donated: parseInt(quantityDonated),
+      comments: comments,
+    };
+    fetch('http://localhost:8000/blood-donations/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('Data posted successfully');
+          // Reset the form fields
+          setPatientId('');
+          setBloodType('');
+          setContactDetails('');
+          setDonationDate('');
+          // setDonationStatus('');
+          setQuantityDonated('');
+          setComments('');
+        } else {
+          console.error('Failed to post data');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -118,183 +128,60 @@ This entry aims to shed light on the importance of blood donation, the process i
       <Typography variant="h6" gutterBottom>
         Donate Now
       </Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={3}style={{margin: "26px",padding:"16px"}}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="firstName"
-              name="firstName"
-              label="First name"
-              fullWidth
-              autoComplete="given-name"
-              variant="outlined"
-              value={formData.firstName}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="lastName"
-              name="lastName"
-              fullWidth
-              autoComplete="family-name"
-              variant="outlined"
-              value={formData.lastName}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="address1"
-              name="address1"
-              label="Address"
-              fullWidth
-              autoComplete="shipping address-line1"
-              variant="outlined"
-              value={formData.address1}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="address2"
-              name="address2"
-              label="Your phone number"
-              fullWidth
-              autoComplete="shipping address-line2"
-              variant="outlined"
-              value={formData.address2}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="birthdate"
-              name="birthdate"
-              label="Birthdate"
-              type="date"
-              fullWidth
-              variant="outlined"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={formData.birthdate}
-              onChange={handleBirthdateChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="city"
-              name="city"
-              label="City"
-              fullWidth
-              autoComplete="shipping address-level2"
-              variant="outlined"
-              value={formData.city}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="state"
-              name="state"
-              label="State/Province/Region"
-              fullWidth
-              variant="outlined"
-              value={formData.state}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel>Blood Group</InputLabel>
-              <Select value={bloodGroup} onChange={handleBloodGroupChange} label="Blood Group">
-                <MenuItem value="A+">A+</MenuItem>
-                <MenuItem value="A-">A-</MenuItem>
-                <MenuItem value="B+">B+</MenuItem>
-                <MenuItem value="B-">B-</MenuItem>
-                <MenuItem value="AB+">AB+</MenuItem>
-                <MenuItem value="AB-">AB-</MenuItem>
-                <MenuItem value="O+">O+</MenuItem>
-                <MenuItem value="O-">O-</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="date"
-              name="date"
-              label="Date"
-              type="date"
-              fullWidth
-              variant="outlined"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={formData.date}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="time"
-              name="time"
-              label="Time"
-              type="time"
-              fullWidth
-              variant="outlined"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={formData.time}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} >
-            <TextField
-              required
-              id="message"
-              name="message"
-              label="Message"
-              fullWidth
-              autoComplete="shipping country"
-              variant="outlined"
-              value={formData.message}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  color="secondary"
-                  name="saveAddress"
-                  checked={formData.saveAddress}
-                  onChange={handleChange}
-                  required
-                />
-              }
-              label="Have you fulfilled the aforementioned requirements?"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+      <form className={classes.form} onSubmit={handleSubmit}>
+      <TextField
+        label="Patient ID"
+        type="number"
+        value={patientId}
+        onChange={(e) => setPatientId(e.target.value)}
+        required
+      />
+      <TextField
+        label="Blood Type"
+        value={bloodType}
+        onChange={(e) => setBloodType(e.target.value)}
+        required
+      />
+      <TextField
+        label="Contact Details"
+        value={contactDetails}
+        onChange={(e) => setContactDetails(e.target.value)}
+        required
+      />
+      <TextField
+        label="Donation Date"
+        type="date"
+        value={donationDate}
+        onChange={(e) => setDonationDate(e.target.value)}
+        required
+      />
+      {/* <TextField
+        label="Donation Status"
+        value={donationStatus}
+        onChange={(e) => setDonationStatus(e.target.value)}
+        required
+      /> */}
+      <TextField
+        label="Quantity Donated"
+        type="number"
+        value={quantityDonated}
+        onChange={(e) => setQuantityDonated(e.target.value)}
+        required
+      />
+      <TextField
+        label="Comments"
+        multiline
+        rows={4}
+        value={comments}
+        onChange={(e) => setComments(e.target.value)}
+      />
+      <Button type="submit" variant="contained" color="primary">
+        Create Blood Donation
+      </Button>
+    </form>
+
     </React.Fragment>
   );
 };
 
 export default BloodDonation;
-

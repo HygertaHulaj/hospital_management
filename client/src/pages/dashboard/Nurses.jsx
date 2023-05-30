@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../components/dashboard/SideBar';
+import {
+  TextField,
+  Button,
+  Grid,
+  Link,
+  Box
+} from '@material-ui/core';
 
 const NursesTable = () => {
   const [nurses, setNurses] = useState([]);
@@ -93,6 +100,15 @@ const NursesTable = () => {
   return (
     <Sidebar>
       <div>
+      <Grid item xs={12}>
+          <Box display="flex" justifyContent="flex-end">
+            <Link href="../dashboard/NurseAdd">
+              <Button variant="contained" color="primary">
+                Add a Nurse
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
         <h2 className="text-2xl font-bold mb-4">Nurses Table</h2>
         <table className="min-w-full bg-white border border-gray-200">
           <thead>

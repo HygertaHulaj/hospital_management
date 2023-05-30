@@ -9,7 +9,10 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import DoctorsProfile from "./pages/dashboard/Doctors"
 import DoctorsProfileAdd from "./pages/dashboard/DoctorsProfileAdd"
-
+import BedAdd from "./pages/dashboard/BedAdd"
+import SurgeryAdd from "./pages/dashboard/SurgeryAdd"
+import NurseAdd from "./pages/dashboard/NurseAdd"
+import HospitalAdd from "./pages/dashboard/HospitalAdd"
 import './App.css';
 import "./Global.css";
 // import React, { useState } from "react";
@@ -30,6 +33,7 @@ import Hospitals from "./pages/dashboard/Hospitals"
 import MedicalTest from "./pages/dashboard/MedicalTest"
 
 import DoctorsEdit  from "./pages/dashboard/doctorsedit"
+import Appointment from "./pages/Appointment"
 
 function App() {
   return (
@@ -46,11 +50,17 @@ function App() {
           <Route path="/patient" element={<Patient/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/blooddonation" element={<BloodDonation/>} />
-          <Route path="/register" element={<Register/>} />\
+          <Route path="/register" element={<Register/>} />
+          <Route path="/appointment" element={<Appointment/>} />
           <Route path="/dashboard/dashboard" element={<Dashboard/>} />
            <Route path="/dashboard/Patients" element={<Patients/>} />
           <Route path="/dashboard/doctors" element={<DoctorsProfile/>} />
           <Route path="/dashboard/DoctorsProfileAdd" element={<DoctorsProfileAdd/>} />
+          <Route path="/dashboard/BedAdd" element={<BedAdd/>} />
+          <Route path="/dashboard/SurgeryAdd" element={<SurgeryAdd/>} />
+          <Route path="/dashboard/NurseAdd" element={<NurseAdd/>} />
+          <Route path="/dashboard/HospitalAdd" element={<HospitalAdd/>} />
+
 
           <Route path="/dashboard/Appointments" element={<Appointments/>} />
           <Route path="/dashboard/BloodDonationD" element={<BloodDonationD/>} />

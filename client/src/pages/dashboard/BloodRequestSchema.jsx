@@ -10,7 +10,11 @@ const BloodRequestsTable = () => {
     fetch('http://localhost:8000/blood-requests/')
       .then((response) => response.json())
       .then((data) => {
-        setRequests(data);
+        if (Array.isArray(data)) {
+          setRequests(data);
+        } else {
+          console.error('Received non-array data:', data);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -26,16 +30,7 @@ const BloodRequestsTable = () => {
 
   const handleUpdate = (requestId) => {
     // Get the updated values for the blood request
-    const updatedData = {
-      request_date: requests.find((request) => request.request_id === requestId).request_date,
-      blood_type: requests.find((request) => request.request_id === requestId).blood_type,
-      contact_information: requests.find((request) => request.request_id === requestId).contact_information,
-      request_status: requests.find((request) => request.request_id === requestId).request_status,
-      requested_units: requests.find((request) => request.request_id === requestId).requested_units,
-      urgency_level: requests.find((request) => request.request_id === requestId).urgency_level,
-      request_notes: requests.find((request) => request.request_id === requestId).request_notes,
-      // Include other fields as necessary
-    };
+    const updatedData = requests.find((request) => request.request_id === requestId);
 
     // Perform the update API request
     fetch(`http://localhost:8000/blood-requests/${requestId}`, {

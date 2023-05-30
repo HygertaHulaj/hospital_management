@@ -1,4 +1,5 @@
 import Topbar from '../components/topbar';
+import Navbar from "../Navbar"
 import React, {  useState } from "react";
 import Patientaccess from "../components/patientaccess";
 import { Typography, Grid, Tab, Tabs} from "@mui/material";
@@ -54,6 +55,7 @@ const Patient = () => {
 
   return (
     <div>
+      <Navbar />
       <Topbar name="Our Patient" ></Topbar>
       <Box style={{ backgroundColor: "#f0f0f0",margin:"26px"}}>
       <Tabs
@@ -80,4 +82,4 @@ const Patient = () => {
       </div>
   );
 }
-export default Patient; 
+export default Patient;

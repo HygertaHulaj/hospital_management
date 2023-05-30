@@ -4,6 +4,7 @@ import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@mater
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Navbar from "../Navbar"
 
 const Login = () => {
 
@@ -33,7 +34,7 @@ const Login = () => {
             localStorage.setItem('token', data.jwtToken);
             localStorage.setItem('user', JSON.stringify(data));
             // Redirect to the dashboard/home page after successful login
-            navigate("/home"); // Replace "/dashboard" with your actual route
+            navigate("/"); // Replace "/dashboard" with your actual route
         } else {
             // Handle login error
             const errorData = await response.json();
@@ -42,7 +43,9 @@ const Login = () => {
     }
 
     return (
+        
         <Grid>
+            <Navbar />
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
                     <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>

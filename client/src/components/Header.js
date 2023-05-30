@@ -1,12 +1,22 @@
 import React from 'react'
 import { Box, Button, styled, Typography } from "@mui/material";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 //img
 import headerImg from '../assets/header.jpg'
 import Appointment from '../pages/Appointment';
 
-const Header = () => {
 
+const Header = () => {
+    const navigate = useNavigate();
+
+    const checkUserToken = () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            navigate('/Appointment')
+        } else {
+            navigate('/login')
+        }
+    }
     const CustomBox = styled(Box) (({ theme }) => ({
         minHeight: '80vh',
         display: 'flex',
@@ -33,6 +43,7 @@ const Header = () => {
             paddingRight: theme.spacing(2),
         },
     }));
+    
 
 
   return  (
@@ -68,8 +79,8 @@ const Header = () => {
                 <Box>
                     <Button 
                     variant='contained'
-                    component={Link} 
-                    to='./Appointment'
+                    // component={Link} 
+                    onClick={checkUserToken}
                     sx={{
                         mr: 2,
                         px: 3, 

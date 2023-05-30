@@ -7,7 +7,7 @@ const BloodDonationTable = () => {
 
   useEffect(() => {
     // Fetch blood donation data from the server
-    fetch('http://localhost:8000/donations/')
+    fetch('http://localhost:8000/blood-donations/')
       .then((response) => response.json())
       .then((data) => {
         setDonations(data);
@@ -38,7 +38,7 @@ const BloodDonationTable = () => {
     };
 
     // Perform the update API request
-    fetch(`http://localhost:8000/donations/${donationId}`, {
+    fetch(`http://localhost:8000/blood-donations/${donationId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const BloodDonationTable = () => {
 
   const handleDelete = (donationId) => {
     // Perform the delete API request
-    fetch(`http://localhost:8000/donations/${donationId}`, {
+    fetch(`http://localhost:8000/blood-donations/${donationId}`, {
       method: 'DELETE',
     })
       .then((response) => response.json())
@@ -94,152 +94,161 @@ const BloodDonationTable = () => {
     <Sidebar>
       <div>
         <h2 className="text-2xl font-bold mb-4">Blood Donation Appointments</h2>
-        <table className="min-w-full bg-white">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 bg-gray-100 border-b">Donation ID</th>
-              <th className="px-4 py-2 bg-gray-100 border-b">Patient ID</th>
-              <th className="px-4 py-2 bg-gray-100 border-b">Blood Type</th>
-              <th className="px-4 py-2 bg-gray-100 border-b">Contact Details</th>
-              <th className="px-4 py-2 bg-gray-100 border-b">Donation Date</th>
-              <th className="px-4 py-2 bg-gray-100 border-b">Donation Status</th>
-              <th className="px-4 py-2 bg-gray-100 border-b">Quantity Donated</th>
-              <th className="px-4 py-2 bg-gray-100 border-b">Comments</th>
-              <th className="px-4 py-2 bg-gray-100 border-b">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {donations.map((donation) => (
-              <tr key={donation.donation_id}>
-                <td className="px-4 py-2 border-b">{donation.donation_id}</td>
-                <td className="px-4 py-2 border-b">
-                  {editMode[donation.donation_id] ? (
-                    <input
-                      type="text"
-                      value={donation.patient_id}
-                      onChange={(e) =>
-                        handleFieldChange(donation.donation_id, 'patient_id', e.target.value)
-                      }
-                    />
-                  ) : (
-                    donation.patient_id
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {editMode[donation.donation_id] ? (
-                    <input
-                      type="text"
-                      value={donation.blood_type}
-                      onChange={(e) =>
-                        handleFieldChange(donation.donation_id, 'blood_type', e.target.value)
-                      }
-                    />
-                  ) : (
-                    donation.blood_type
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {editMode[donation.donation_id] ? (
-                    <input
-                      type="text"
-                      value={donation.contact_details}
-                      onChange={(e) =>
-                        handleFieldChange(donation.donation_id, 'contact_details', e.target.value)
-                      }
-                    />
-                  ) : (
-                    donation.contact_details
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {editMode[donation.donation_id] ? (
-                    <input
-                      type="text"
-                      value={donation.donation_date}
-                      onChange={(e) =>
-                        handleFieldChange(donation.donation_id, 'donation_date', e.target.value)
-                      }
-                    />
-                  ) : (
-                    donation.donation_date
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {editMode[donation.donation_id] ? (
-                    <input
-                      type="text"
-                      value={donation.donation_status}
-                      onChange={(e) =>
-                        handleFieldChange(donation.donation_id, 'donation_status', e.target.value)
-                      }
-                    />
-                  ) : (
-                    donation.donation_status
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {editMode[donation.donation_id] ? (
-                    <input
-                      type="text"
-                      value={donation.quantity_donated}
-                      onChange={(e) =>
-                        handleFieldChange(donation.donation_id, 'quantity_donated', e.target.value)
-                      }
-                    />
-                  ) : (
-                    donation.quantity_donated
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {editMode[donation.donation_id] ? (
-                    <input
-                      type="text"
-                      value={donation.comments}
-                      onChange={(e) =>
-                        handleFieldChange(donation.donation_id, 'comments', e.target.value)
-                      }
-                    />
-                  ) : (
-                    donation.comments
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {editMode[donation.donation_id] ? (
-                    <>
-                      <button
-                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-2"
-                        onClick={() => handleUpdate(donation.donation_id)}
-                      >
-                        Save
-                      </button>
-                      <button
-                        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4"
-                        onClick={() => setEditMode((prevEditMode) => ({ ...prevEditMode, [donation.donation_id]: false }))}
-                      >
-                        Cancel
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2"
-                        onClick={() => handleEdit(donation.donation_id)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
-                        onClick={() => handleDelete(donation.donation_id)}
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </td>
+        {Array.isArray(donations) && donations.length > 0 ? (
+          <table className="min-w-full bg-white">
+            <thead>
+              <tr>
+                <th className="px-4 py-2 bg-gray-100 border-b">Donation ID</th>
+                <th className="px-4 py-2 bg-gray-100 border-b">Patient ID</th>
+                <th className="px-4 py-2 bg-gray-100 border-b">Blood Type</th>
+                <th className="px-4 py-2 bg-gray-100 border-b">Contact Details</th>
+                <th className="px-4 py-2 bg-gray-100 border-b">Donation Date</th>
+                <th className="px-4 py-2 bg-gray-100 border-b">Donation Status</th>
+                <th className="px-4 py-2 bg-gray-100 border-b">Quantity Donated</th>
+                <th className="px-4 py-2 bg-gray-100 border-b">Comments</th>
+                <th className="px-4 py-2 bg-gray-100 border-b">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {donations.map((donation) => (
+                <tr key={donation.donation_id}>
+                  <td className="px-4 py-2 border-b">{donation.donation_id}</td>
+                  <td className="px-4 py-2 border-b">
+                    {editMode[donation.donation_id] ? (
+                      <input
+                        type="text"
+                        value={donation.patient_id}
+                        onChange={(e) =>
+                          handleFieldChange(donation.donation_id, 'patient_id', e.target.value)
+                        }
+                      />
+                    ) : (
+                      donation.patient_id
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {editMode[donation.donation_id] ? (
+                      <input
+                        type="text"
+                        value={donation.blood_type}
+                        onChange={(e) =>
+                          handleFieldChange(donation.donation_id, 'blood_type', e.target.value)
+                        }
+                      />
+                    ) : (
+                      donation.blood_type
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {editMode[donation.donation_id] ? (
+                      <input
+                        type="text"
+                        value={donation.contact_details}
+                        onChange={(e) =>
+                          handleFieldChange(donation.donation_id, 'contact_details', e.target.value)
+                        }
+                      />
+                    ) : (
+                      donation.contact_details
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {editMode[donation.donation_id] ? (
+                      <input
+                        type="text"
+                        value={donation.donation_date}
+                        onChange={(e) =>
+                          handleFieldChange(donation.donation_id, 'donation_date', e.target.value)
+                        }
+                      />
+                    ) : (
+                      donation.donation_date
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {editMode[donation.donation_id] ? (
+                      <input
+                        type="text"
+                        value={donation.donation_status}
+                        onChange={(e) =>
+                          handleFieldChange(donation.donation_id, 'donation_status', e.target.value)
+                        }
+                      />
+                    ) : (
+                      donation.donation_status
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {editMode[donation.donation_id] ? (
+                      <input
+                        type="text"
+                        value={donation.quantity_donated}
+                        onChange={(e) =>
+                          handleFieldChange(donation.donation_id, 'quantity_donated', e.target.value)
+                        }
+                      />
+                    ) : (
+                      donation.quantity_donated
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {editMode[donation.donation_id] ? (
+                      <input
+                        type="text"
+                        value={donation.comments}
+                        onChange={(e) =>
+                          handleFieldChange(donation.donation_id, 'comments', e.target.value)
+                        }
+                      />
+                    ) : (
+                      donation.comments
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {editMode[donation.donation_id] ? (
+                      <>
+                        <button
+                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded"
+                          onClick={() => handleUpdate(donation.donation_id)}
+                        >
+                          Save
+                        </button>
+                        <button
+                          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded ml-2"
+                          onClick={() =>
+                            setEditMode((prevEditMode) => ({
+                              ...prevEditMode,
+                              [donation.donation_id]: false,
+                            }))
+                          }
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                          onClick={() => handleEdit(donation.donation_id)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded ml-2"
+                          onClick={() => handleDelete(donation.donation_id)}
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No blood donations found.</p>
+        )}
       </div>
     </Sidebar>
   );

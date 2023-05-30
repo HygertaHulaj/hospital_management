@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../components/dashboard/SideBar';
+import {
+  TextField,
+  Button,
+  Grid,
+  Link,
+  Box
+} from '@material-ui/core';
 
 const MedicalTestsTable = () => {
   const [medicalTests, setMedicalTests] = useState([]);
@@ -87,10 +94,21 @@ const MedicalTestsTable = () => {
       })
     );
   };
-
+  if (!Array.isArray(medicalTests) || medicalTests.length === 0) {
+    return <div>No medical tests available.</div>;
+  }
   return (
     <Sidebar>
       <div>
+      <Grid item xs={12}>
+          <Box display="flex" justifyContent="flex-end">
+            <Link href="../dashboard/DoctorsProfileAdd">
+              <Button variant="contained" color="primary">
+                Add a medical etst
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
         <h2 className="text-2xl font-bold mb-4">Medical Tests Table</h2>
         <table className="min-w-full bg-white border border-gray-200">
           <thead>

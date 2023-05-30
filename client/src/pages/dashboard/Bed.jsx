@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../components/dashboard/SideBar';
+import {
+  TextField,
+  Button,
+  Grid,
+  Link,
+  Box
+} from '@material-ui/core';
 
 const BedsTable = () => {
   const [beds, setBeds] = useState([]);
@@ -26,16 +33,7 @@ const BedsTable = () => {
 
   const handleUpdate = (bedId) => {
     // Get the updated values for the bed
-    const updatedData = {
-      ward_id: beds.find((bed) => bed.bed_id === bedId).ward_id,
-      patient_id: beds.find((bed) => bed.bed_id === bedId).patient_id,
-      availability: beds.find((bed) => bed.bed_id === bedId).availability,
-      bed_condition: beds.find((bed) => bed.bed_id === bedId).bed_condition,
-      bed_assigning_datetime: beds.find((bed) => bed.bed_id === bedId).bed_assigning_datetime,
-      discharge_datetime: beds.find((bed) => bed.bed_id === bedId).discharge_datetime,
-      additional_notes: beds.find((bed) => bed.bed_id === bedId).additional_notes,
-      // Include other fields as necessary
-    };
+    const updatedData = beds.find((bed) => bed.bed_id === bedId);
 
     // Perform the update API request
     fetch(`http://localhost:8000/beds/${bedId}`, {
@@ -93,6 +91,15 @@ const BedsTable = () => {
   return (
     <Sidebar>
       <div>
+        <Grid item xs={12}>
+          <Box display="flex" justifyContent="flex-end">
+            <Link href="../dashboard/BedAdd">
+              <Button variant="contained" color="primary">
+                Add a bed
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
         <h2 className="text-2xl font-bold mb-4">Beds Table</h2>
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
@@ -112,35 +119,129 @@ const BedsTable = () => {
             {beds.map((bed) => (
               <tr key={bed.bed_id}>
                 <td className="px-4 py-2 border-b">{bed.bed_id}</td>
-                <td className="px-4 py-2 border-b">{bed.ward_id}</td>
-                <td className="px-4 py-2 border-b">{bed.patient_id}</td>
-                <td className="px-4 py-2 border-b">{bed.availability}</td>
-                <td className="px-4 py-2 border-b">{bed.bed_condition}</td>
-                <td className="px-4 py-2 border-b">{bed.bed_assigning_datetime}</td>
-                <td className="px-4 py-2 border-b">{bed.discharge_datetime}</td>
-                <td className="px-4 py-2 border-b">{bed.additional_notes}</td>
                 <td className="px-4 py-2 border-b">
                   {editMode[bed.bed_id] ? (
-                    <button
-                      className="text-blue-500 underline"
-                      onClick={() => handleUpdate(bed.bed_id)}
-                    >
-                      Save
-                    </button>
+                    <TextField
+                      value={bed.ward_id}
+                      onChange={(e) =>
+                        handleFieldChange(bed.bed_id, 'ward_id', e.target.value)
+                      }
+                    />
+                  ) : (
+                    bed.ward_id
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[bed.bed_id] ? (
+                    <TextField
+                      value={bed.patient_id}
+                      onChange={(e) =>
+                        handleFieldChange(bed.bed_id, 'patient_id', e.target.value)
+                      }
+                    />
+                  ) : (
+                    bed.patient_id
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[bed.bed_id] ? (
+                    <TextField
+                      value={bed.availability}
+                      onChange={(e) =>
+                        handleFieldChange(bed.bed_id, 'availability', e.target.value)
+                      }
+                    />
+                  ) : (
+                    bed.availability
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[bed.bed_id] ? (
+                    <TextField
+                      value={bed.bed_condition}
+                      onChange={(e) =>
+                        handleFieldChange(bed.bed_id, 'bed_condition', e.target.value)
+                      }
+                    />
+                  ) : (
+                    bed.bed_condition
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[bed.bed_id] ? (
+                    <TextField
+                      value={bed.bed_assigning_datetime}
+                      onChange={(e) =>
+                        handleFieldChange(bed.bed_id, 'bed_assigning_datetime', e.target.value)
+                      }
+                    />
+                  ) : (
+                    bed.bed_assigning_datetime
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[bed.bed_id] ? (
+                    <TextField
+                      value={bed.discharge_datetime}
+                      onChange={(e) =>
+                        handleFieldChange(bed.bed_id, 'discharge_datetime', e.target.value)
+                      }
+                    />
+                  ) : (
+                    bed.discharge_datetime
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[bed.bed_id] ? (
+                    <TextField
+                      value={bed.additional_notes}
+                      onChange={(e) =>
+                        handleFieldChange(bed.bed_id, 'additional_notes', e.target.value)
+                      }
+                    />
+                  ) : (
+                    bed.additional_notes
+                  )}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  {editMode[bed.bed_id] ? (
+                    <>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleUpdate(bed.bed_id)}
+                      >
+                        Save
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() =>
+                          setEditMode((prevEditMode) => ({
+                            ...prevEditMode,
+                            [bed.bed_id]: false,
+                          }))
+                        }
+                      >
+                        Cancel
+                      </Button>
+                    </>
                   ) : (
                     <>
-                      <button
-                        className="text-blue-500 underline mr-2"
+                      <Button
+                        variant="contained"
+                        color="primary"
                         onClick={() => handleEdit(bed.bed_id)}
                       >
                         Edit
-                      </button>
-                      <button
-                        className="text-red-500 underline"
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="secondary"
                         onClick={() => handleDelete(bed.bed_id)}
                       >
                         Delete
-                      </button>
+                      </Button>
                     </>
                   )}
                 </td>
@@ -153,4 +254,4 @@ const BedsTable = () => {
   );
 };
 
-export default BedsTable;
+export default BedsTable

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Paper, Avatar, Typography, TextField, Button } from '@material-ui/core';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import Navbar from "../Navbar"
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,7 +14,7 @@ const Register = () => {
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: '#1bbd7e' };
   const marginTop = { marginTop: 5 };
-
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -69,15 +70,21 @@ const Register = () => {
           });
         } else {
           // console.error('Registration failed');
+          response.json().then(data => {
+            // check if error message is 'Email already exists'
+            if (data.detail === 'Email already exists') {
+              setError('Email already exists');
+            }
+          });
         }
       })
       .catch((error) => {
         console.error(error);
       });
   };
-
   return (
     <Grid>
+      <Navbar />
       <Paper style={paperStyle}>
         <Grid align='center'>
           <Avatar style={avatarStyle}>
@@ -86,6 +93,8 @@ const Register = () => {
           <h2 style={headerStyle}>Sign Up</h2>
           <Typography variant='caption' gutterBottom>Please fill this form to create an account!</Typography>
         </Grid>
+        {error && <p>{error}</p>}
+        <form onSubmit={handleSubmit}></form>
         <form onSubmit={handleSubmit}>
           <TextField
             fullWidth
