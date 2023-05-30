@@ -96,24 +96,91 @@ const Sidebar = ({ children }) => {
                 </li>
                 <li className="--set-active-tables-html">
                   <a
-                    href="/dashboard/CardPzhk"
+                    href="/dashboard/BloodDonationD "
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg  bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
                       <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
-                    <span className="grow ml-3 text-gray-600">Context</span>
+                    <span className="grow ml-3 text-gray-600">BloodDonation </span>
                   </a>
                 </li>
                 <li className="--set-active-tables-html">
                   <a
-                    href="/dashboard/ProblemsAdmin"
+                    href="/dashboard/BloodRequestSchema "
+                    className="flex items-center p-2 mb-1 mt-5 rounded-lg  bg-white shadow-lg font-medium"
+                  >
+                    <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
+                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                    </div>
+                    <span className="grow ml-3 text-gray-600">BloodRequestSchema </span>
+                  </a>
+                </li>
+                <li className="--set-active-tables-html">
+                  <a
+                    href="/dashboard/appointments"
+                    className="flex items-center p-2 mb-1 mt-5 rounded-lg  bg-white shadow-lg font-medium"
+                  >
+                    
+                    <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
+                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                    </div>
+                    <span className="grow ml-3 text-gray-600">Appointments</span>
+                  </a>
+                </li>
+                <li className="--set-active-tables-html">
+                  <a
+                    href="/dashboard/Bed"
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
                       <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
-                    <span className="grow ml-3 text-gray-600">Comments</span>
+                    <span className="grow ml-3 text-gray-600">Bed</span>
+                  </a>
+                </li>
+                <li className="--set-active-tables-html">
+                  <a
+                    href="/dashboard/Surgery"
+                    className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
+                  >
+                    <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
+                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                    </div>
+                    <span className="grow ml-3 text-gray-600">Surgery</span>
+                  </a>
+                </li>
+                <li className="--set-active-tables-html">
+                  <a
+                    href="/dashboard/Nurses"
+                    className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
+                  >
+                    <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
+                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                    </div>
+                    <span className="grow ml-3 text-gray-600">Nurses</span>
+                  </a>
+                </li>
+                <li className="--set-active-tables-html">
+                  <a
+                    href="/dashboard/Hospitals"
+                    className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
+                  >
+                    <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
+                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                    </div>
+                    <span className="grow ml-3 text-gray-600">Hospitals</span>
+                  </a>
+                </li>
+                <li className="--set-active-tables-html">
+                  <a
+                    href="/dashboard/MedicalTest"
+                    className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
+                  >
+                    <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
+                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                    </div>
+                    <span className="grow ml-3 text-gray-600">MedicalTest</span>
                   </a>
                 </li>
               </ul>
