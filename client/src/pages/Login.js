@@ -33,7 +33,7 @@ const Login = () => {
             localStorage.setItem('token', data.jwtToken);
             localStorage.setItem('user', JSON.stringify(data));
             // Redirect to the dashboard/home page after successful login
-            navigate("/dashboard"); // Replace "/dashboard" with your actual route
+            navigate("/home"); // Replace "/dashboard" with your actual route
         } else {
             // Handle login error
             const errorData = await response.json();

@@ -18,6 +18,7 @@ import { Route, Routes } from "react-router-dom"
 import BloodDonation from "./components/bloodDonation"
 import Dashboard from "./pages/dashboard/dashboard"
 import Patients from "./pages/dashboard/Patients"
+import DoctorsEdit  from "./pages/dashboard/doctorsedit"
 function App() {
   return (
     <>
@@ -38,6 +39,7 @@ function App() {
            <Route path="/dashboard/Patients" element={<Patients/>} />
           <Route path="/dashboard/doctors" element={<DoctorsProfile/>} />
           <Route path="/dashboard/DoctorsProfileAdd" element={<DoctorsProfileAdd/>} />
+          <Route path="/dashboard/doctorsedit/:doctor_id"element={<DoctorsEdit/>}/>
 
         </Routes>
       </div>
