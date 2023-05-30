@@ -19,6 +19,7 @@ import { Route, Routes } from "react-router-dom"
 import BloodDonation from "./components/bloodDonation"
 import Dashboard from "./pages/dashboard/dashboard"
 import Patients from "./pages/dashboard/Patients"
+
 import Appointments from "./pages/dashboard/Appointments"
 import BloodDonationD from "./pages/dashboard/BloodDonationD"
 import BloodRequestSchema from "./pages/dashboard/BloodRequestSchema"
@@ -27,6 +28,9 @@ import Surgery from "./pages/dashboard/Surgery"
 import Nurses from "./pages/dashboard/Nurses"
 import Hospitals from "./pages/dashboard/Hospitals"
 import MedicalTest from "./pages/dashboard/MedicalTest"
+
+import DoctorsEdit  from "./pages/dashboard/doctorsedit"
+
 function App() {
   return (
     <>
@@ -47,6 +51,7 @@ function App() {
            <Route path="/dashboard/Patients" element={<Patients/>} />
           <Route path="/dashboard/doctors" element={<DoctorsProfile/>} />
           <Route path="/dashboard/DoctorsProfileAdd" element={<DoctorsProfileAdd/>} />
+
           <Route path="/dashboard/Appointments" element={<Appointments/>} />
           <Route path="/dashboard/BloodDonationD" element={<BloodDonationD/>} />
           <Route path="/dashboard/BloodRequestSchema" element={<BloodRequestSchema/>} />
@@ -55,6 +60,9 @@ function App() {
           <Route path="/dashboard/Nurses" element={<Nurses/>} />
           <Route path="/dashboard/Hospitals" element={<Hospitals/>} />
           <Route path="/dashboard/MedicalTest" element={<MedicalTest/>} />
+
+          <Route path="/dashboard/doctorsedit/:doctor_id"element={<DoctorsEdit/>}/>
+
         </Routes>
       </div>
       
