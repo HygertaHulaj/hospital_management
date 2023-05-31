@@ -20,6 +20,8 @@ import "./Global.css";
 
 import { Route, Routes } from "react-router-dom"
 import BloodDonation from "./components/bloodDonation"
+// import Doctorsedit from "./components/doctorsedit"
+import DoctorEdit  from "./pages/DoctorEdit"
 import Dashboard from "./pages/dashboard/dashboard"
 import Patients from "./pages/dashboard/Patients"
 
@@ -31,6 +33,9 @@ import Surgery from "./pages/dashboard/Surgery"
 import Nurses from "./pages/dashboard/Nurses"
 import Hospitals from "./pages/dashboard/Hospitals"
 import MedicalTest from "./pages/dashboard/MedicalTest"
+
+import DepartmentsDashboard from "./pages/dashboard/departments"
+import DepartmentsAdd from "./pages/dashboard/DepartmentsAdd"
 
 import DoctorsEdit  from "./pages/dashboard/doctorsedit"
 import Appointment from "./pages/Appointment"
@@ -50,12 +55,16 @@ function App() {
           <Route path="/patient" element={<Patient/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/blooddonation" element={<BloodDonation/>} />
+          <Route path="/DoctorEdit/:doctor_id" element={<DoctorEdit/>} />
+          <Route path="/doctoredit" element={<DoctorEdit/>} />
           <Route path="/register" element={<Register/>} />
           <Route path="/appointment" element={<Appointment/>} />
           <Route path="/dashboard/dashboard" element={<Dashboard/>} />
            <Route path="/dashboard/Patients" element={<Patients/>} />
           <Route path="/dashboard/doctors" element={<DoctorsProfile/>} />
           <Route path="/dashboard/DoctorsProfileAdd" element={<DoctorsProfileAdd/>} />
+          <Route path="/dashboard/departments" element={<DepartmentsDashboard/>} />
+          <Route path="/dashboard/DepartmentsAdd" element={<DepartmentsAdd/>} />
           <Route path="/dashboard/BedAdd" element={<BedAdd/>} />
           <Route path="/dashboard/SurgeryAdd" element={<SurgeryAdd/>} />
           <Route path="/dashboard/NurseAdd" element={<NurseAdd/>} />

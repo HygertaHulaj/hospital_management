@@ -13,15 +13,15 @@ function MyDoctors() {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
-    fetch('/api/doctors')
+    fetch('http://localhost:8000/doctors/')
       .then(response => response.json())
       .then(data => setDoctors(data))
       .catch(error => console.error(error));
   }, []);
 
-  const filteredDoctors = doctors.filter((doctor) =>
-    specialty === 'all' || doctor.specialty === specialty
-  );
+  const filteredDoctors = Array.from(new Set(doctors.filter(doctor =>
+    (specialty === 'all' || doctor.specialty === specialty)
+  ).map(doctor => doctor.id))).slice(0, 3).map(doctorId => doctors.find(doctor => doctor.id === doctorId));
 
   return (
     <div>
@@ -36,7 +36,7 @@ function MyDoctors() {
       <Grid container spacing={5} padding={18}>
         <Grid item container spacing={5} xs={12}>
           {filteredDoctors.map((doctor) => (
-            <Grid item xs={4} key={doctor.id}>
+            <Grid item  key={doctor.id}>
               <Doctors
                 name={doctor.name}
                 facebook={doctor.facebook}

@@ -32,43 +32,66 @@ export const DoctorsComponent = () => {
     navigate(`/dashboard/doctorsedit/${doctors_id}`);
   };
 
-  return (
-    <>
+  return(
+    <Grid container spacing={4}>
       {doctors.map((doctor) => (
-        <Box width='350px' key={doctor.doctors_id}>
-          <Card>
-            <CardMedia
-              component='img'
-              height='240'
-              image={doctor.image}
-              alt='Doctor Image'
-            />
-            <CardContent>
-              <Typography gutterBottom variant='h5' component='div'>
-                {doctor.name}
-              </Typography>
-              <Typography variant='body2' color='text.secondary'>
-                {doctor.bio}
-              </Typography>
-              <Link to={`/dashboard/doctorsedit/${doctor.doctor_id}`}>
-                <Button size='big' align='center'>
-                    Read More
-                </Button>
-                </Link>
-            </CardContent>
-            <CardActions>
-              <Stack direction='row' spacing={1} marginLeft={4}>
-                <Button size='big' startIcon={<FacebookIcon />} component={Link} to={doctor.facebook} />
-                <Button size='big' startIcon={<LinkedInIcon />} component={Link} to={doctor.linkedin} />
-                <Button size='big' startIcon={<InstagramIcon />} component={Link} to={doctor.instagram} />
-                <Button size='big' startIcon={<TwitterIcon />} component={Link} to={doctor.twitter} />
-              </Stack>
-            </CardActions>
-          </Card>
-        </Box>
-      ))}
-    </>
-  );
-};
+        <Grid item xs={12} sm={6} md={4} key={doctor.doctor_id}>
+              <Box width='100%'>
+                <Card>
+                  <CardMedia
+                    component='img'
+                    height='240'
+                    image={doctor.image}
+                    alt='Doctor Image'
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant='h5' component='div'>
+                      {doctor.name}
+                    </Typography>
+                    <Typography variant='body2' color='text.secondary'>
+                      {doctor.bio}
+                    </Typography>
+                    <Link to={`/dashboard/doctorsedit/${doctor.doctor_id}`}>
+                      <Button size='big' align='center'>
+                        Read More
+                      </Button>
+                    </Link>
+                  </CardContent>
+                  <CardActions>
+                    <Stack direction='row' spacing={1} marginLeft={4}>
+                      <Button
+                        size='big'
+                        startIcon={<FacebookIcon />}
+                        component={Link}
+                        to={doctor.facebook}
+                      />
+                      <Button
+                        size='big'
+                        startIcon={<LinkedInIcon />}
+                        component={Link}
+                        to={doctor.linkedin}
+                      />
+                      <Button
+                        size='big'
+                        startIcon={<InstagramIcon />}
+                        component={Link}
+                        to={doctor.instagram}
+                      />
+                      <Button
+                        size='big'
+                        startIcon={<TwitterIcon />}
+                        component={Link}
+                        to={doctor.twitter}
+                      />
+                    </Stack>
+                  </CardActions>
+                </Card>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      );
+    };
+
 
 export default DoctorsComponent;

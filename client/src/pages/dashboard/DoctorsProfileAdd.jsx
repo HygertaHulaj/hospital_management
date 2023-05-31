@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import Sidebar from '../../components/dashboard/SideBar';
-import { InputAdornment, TextField, Select, MenuItem, FormControl, Button, Grid, Card, Checkbox, ListItemText, CardContent, Typography,InputLabel, CardMedia } from '@material-ui/core';
-import { Box } from '@mui/material';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import IconButton from '@mui/material/IconButton';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import SendIcon from '@mui/icons-material/Send';
+import { TextField, Button, Grid, Card, CardContent, Typography } from '@material-ui/core';
 
 const DoctorsProfileAdd = () => {
   const [doctorInfo, setDoctorInfo] = useState({
     name: '',
     qualifications: '',
     bio: '',
+    specialty: [],
+    education: [],
     experience: '',
     address: '',
     phone: '',
@@ -25,69 +18,33 @@ const DoctorsProfileAdd = () => {
     instagram: '',
     linkedin: '',
     twitter: '',
-    specialty: [],
-    education: [],
-    social: {
-      facebook: '',
-      linkedin: '',
-      instagram: '',
-      twitter: '',
-    },
-    contact: {
-      address: '',
-      phone: '',
-      email: '',
-      website: '',
-    },
   });
-  const [imageSrc, setImageSrc] = useState('');
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setDoctorInfo((prevDoctorInfo) => ({
-      ...prevDoctorInfo,
-      [name]: value,
-    }));
+    if (name === 'specialty') {
+      const specialties = value.split(',').map((specialty) => specialty.trim());
+      setDoctorInfo((prevDoctorInfo) => ({
+        ...prevDoctorInfo,
+        [name]: specialties,
+      }));
+    } else {
+      setDoctorInfo((prevDoctorInfo) => ({
+        ...prevDoctorInfo,
+        [name]: value,
+      }));
+    }
   };
 
-  const handleEducationChange = (event) => {
-    const { name, value } = event.target;
+  const handleEducationChange = (index, value) => {
     const education = [...doctorInfo.education];
-    education[name] = value;
+    education[index] = value;
     setDoctorInfo((prevDoctorInfo) => ({
       ...prevDoctorInfo,
       education: education,
     }));
   };
 
-  const handleContactChange = (event) => {
-    const { name, value } = event.target;
-    setDoctorInfo((prevDoctorInfo) => ({
-      ...prevDoctorInfo,
-      contact: {
-        ...prevDoctorInfo.contact,
-        [name]: value,
-      },
-    }));
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    const url = URL.createObjectURL(file);
-    setImageSrc(url);
-  };
-
-  const handleSocialChange = (event) => {
-    const { name, value } = event.target;
-    setDoctorInfo((prevDoctorInfo) => ({
-      ...prevDoctorInfo,
-      social: {
-        ...prevDoctorInfo.social,
-        [name]: value,
-      },
-    }));
-  };
-  
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = { ...doctorInfo };
@@ -106,6 +63,8 @@ const DoctorsProfileAdd = () => {
             name: '',
             qualifications: '',
             bio: '',
+            specialty: [],
+            education: [],
             experience: '',
             address: '',
             phone: '',
@@ -115,22 +74,7 @@ const DoctorsProfileAdd = () => {
             instagram: '',
             linkedin: '',
             twitter: '',
-            specialty: [],
-            education: [],
-            social: {
-              facebook: '',
-              linkedin: '',
-              instagram: '',
-              twitter: '',
-            },
-            contact: {
-              address: '',
-              phone: '',
-              email: '',
-              website: '',
-            },
           });
-          setImageSrc('');
         } else {
           console.error('Error adding doctor profile');
         }
@@ -154,7 +98,7 @@ const DoctorsProfileAdd = () => {
                         Add Doctor Profile
                       </Typography>
                       <Grid container spacing={3}>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
                           <TextField
                             name="name"
                             label="Name"
@@ -164,7 +108,7 @@ const DoctorsProfileAdd = () => {
                             onChange={handleInputChange}
                           />
                         </Grid>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
                           <TextField
                             name="qualifications"
                             label="Qualifications"
@@ -174,7 +118,56 @@ const DoctorsProfileAdd = () => {
                             onChange={handleInputChange}
                           />
                         </Grid>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="bio"
+                            label="Bio"
+                            variant="outlined"
+                            fullWidth
+                            multiline
+                            rows={4}
+                            value={doctorInfo.bio}
+                            onChange={handleInputChange}
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="specialty"
+                            label="Specialty"
+                            variant="outlined"
+                            fullWidth
+                            value={doctorInfo.specialty.join(', ')}
+                            onChange={handleInputChange}
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Typography variant="h6" component="div">
+                            Education
+                          </Typography>
+                          {doctorInfo.education.map((education, index) => (
+                            <TextField
+                              key={index}
+                              label={`Education ${index + 1}`}
+                              variant="outlined"
+                              fullWidth
+                              value={education}
+                              onChange={(event) => handleEducationChange(index, event.target.value)}
+                            />
+                          ))}
+                          <Button
+                            variant="outlined"
+                            color="primary"
+                            onClick={() =>
+                              setDoctorInfo((prevDoctorInfo) => ({
+                                ...prevDoctorInfo,
+                                education: [...prevDoctorInfo.education, ''],
+                              }))
+                            }
+                          >
+                            Add Education
+                          </Button>
+                        </Grid>
+                        <Grid item xs={12}>
                           <TextField
                             name="experience"
                             label="Experience"
@@ -184,144 +177,89 @@ const DoctorsProfileAdd = () => {
                             onChange={handleInputChange}
                           />
                         </Grid>
-                      </Grid>
-                      <TextField
-                        name="bio"
-                        label="Bio"
-                        variant="outlined"
-                        fullWidth
-                        multiline
-                        rows={4}
-                        value={doctorInfo.bio}
-                        onChange={handleInputChange}
-                      />
-                      <TextField
-                        name="specialty"
-                        label="Specialty"
-                        variant="outlined"
-                        fullWidth
-                        value={doctorInfo.specialty}
-                        onChange={handleInputChange}
-                        style={{ marginTop: '20px' }}
-                      />
-                      <Typography variant="h6" component="div" style={{ marginTop: '20px' }}>
-                        Education
-                      </Typography>
-                      {doctorInfo.education.map((education, index) => (
-                        <TextField
-                          key={index}
-                          name={index.toString()}
-                          label={`Education ${index + 1}`}
-                          variant="outlined"
-                          fullWidth
-                          value={education}
-                          onChange={handleEducationChange}
-                          style={{ marginTop: '10px' }}
-                        />
-                      ))}
-                      <Button
-                        variant="outlined"
-                        onClick={() =>
-                          setDoctorInfo((prevDoctorInfo) => ({
-                            ...prevDoctorInfo,
-                            education: [...prevDoctorInfo.education, ''],
-                          }))
-                        }
-                        style={{ marginTop: '10px' }}
-                      >
-                        Add Education
-                      </Button>
-                      <Typography variant="h6" component="div" style={{ marginTop: '20px' }}>
-                        Contact Information
-                      </Typography>
-                      <Grid container spacing={3}>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
                           <TextField
                             name="address"
                             label="Address"
                             variant="outlined"
                             fullWidth
-                            value={doctorInfo.contact.address}
-                            onChange={handleContactChange}
+                            value={doctorInfo.address}
+                            onChange={handleInputChange}
                           />
                         </Grid>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
                           <TextField
                             name="phone"
                             label="Phone"
                             variant="outlined"
                             fullWidth
-                            value={doctorInfo.contact.phone}
-                            onChange={handleContactChange}
+                            value={doctorInfo.phone}
+                            onChange={handleInputChange}
                           />
                         </Grid>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
                           <TextField
                             name="email"
                             label="Email"
                             variant="outlined"
                             fullWidth
-                            value={doctorInfo.contact.email}
-                            onChange={handleContactChange}
+                            value={doctorInfo.email}
+                            onChange={handleInputChange}
                           />
                         </Grid>
-                      </Grid>
-                      <Grid container spacing={3}>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
                           <TextField
                             name="website"
                             label="Website"
                             variant="outlined"
                             fullWidth
-                            value={doctorInfo.contact.website}
-                            onChange={handleContactChange}
+                            value={doctorInfo.website}
+                            onChange={handleInputChange}
                           />
                         </Grid>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
                           <TextField
                             name="facebook"
                             label="Facebook"
                             variant="outlined"
                             fullWidth
-                            value={doctorInfo.social.facebook}
-                            onChange={handleSocialChange}
+                            value={doctorInfo.facebook}
+                            onChange={handleInputChange}
                           />
                         </Grid>
-                        <Grid item xs={12} md={4}>
-                          <TextField
-                            name="linkedin"
-                            label="LinkedIn"
-                            variant="outlined"
-                            fullWidth
-                            value={doctorInfo.social.linkedin}
-                            onChange={handleSocialChange}
-                          />
-                        </Grid>
-                      </Grid>
-                      <Grid container spacing={3}>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
                           <TextField
                             name="instagram"
                             label="Instagram"
                             variant="outlined"
                             fullWidth
-                            value={doctorInfo.social.instagram}
-                            onChange={handleSocialChange}
+                            value={doctorInfo.instagram}
+                            onChange={handleInputChange}
                           />
                         </Grid>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="linkedin"
+                            label="LinkedIn"
+                            variant="outlined"
+                            fullWidth
+                            value={doctorInfo.linkedin}
+                            onChange={handleInputChange}
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
                           <TextField
                             name="twitter"
                             label="Twitter"
                             variant="outlined"
                             fullWidth
-                            value={doctorInfo.social.twitter}
-                            onChange={handleSocialChange}
+                            value={doctorInfo.twitter}
+                            onChange={handleInputChange}
                           />
                         </Grid>
                       </Grid>
-                      <Button type="submit" variant="contained" style={{ marginTop: '20px' }}>
-                        Submit
+                      <Button type="submit" variant="contained" color="primary">
+                        Add Profile
                       </Button>
                     </CardContent>
                   </Card>

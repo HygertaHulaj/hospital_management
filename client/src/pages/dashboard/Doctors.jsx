@@ -39,7 +39,7 @@ function DoctorsProfile() {
         </Grid>
         <Grid container p={6}>
           {filteredDoctors.map((doctor, index) => (
-            <Grid item xs={4} key={doctor.id}>
+            <Grid item key={doctor.id}>
               <DoctorsComponent doctor={doctor} />
             </Grid>
           ))}
