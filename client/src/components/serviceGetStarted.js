@@ -10,7 +10,7 @@ const ServiceGetStarted = ({ title ,icone}) => {
             <img
               src={icone}
               alt="frame402"
-              style={{ padding: "85px", width: "100%"}}
+              style={{ padding: "85px", width: "65%"}}
 
             />
             <Typography variant="h6" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
