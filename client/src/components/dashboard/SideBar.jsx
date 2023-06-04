@@ -1,12 +1,19 @@
 import React from "react";
-import { RiSettings3Fill } from "react-icons/ri";
-import { FaChartPie } from "react-icons/fa";
-import { BiNews } from "react-icons/bi";
-import { BsPersonFill } from "react-icons/bs";
 import { SiSpeedtest } from "react-icons/si";
 import { SlMenu } from "react-icons/sl";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import {FaUserNurse} from "react-icons/fa"
+import {FcDepartment } from "react-icons/fc"
+import {FiUsers} from "react-icons/fi"
+import {MdBloodtype} from "react-icons/md"
+import {BiDonateBlood} from "react-icons/bi"
+import {BsFillCalendar2RangeFill} from "react-icons/bs"
+import {MdBedroomChild} from "react-icons/md"
+import {RiSurgicalMaskLine } from "react-icons/ri"
+import {GiNurseFemale} from "react-icons/gi"
+import {FaRegHospital} from "react-icons/fa"
+import {GiTestTubes} from "react-icons/gi"
 
 const Sidebar = ({ children }) => {
   const [SidebarOpen, setSidebarOpen] = useState(false);
@@ -30,7 +37,7 @@ const Sidebar = ({ children }) => {
 
       </div>
       <aside>
-        <div className=" flex font-sans bg-red-900 w-full ">
+        <div className=" flex font-sans w-full ">
           <div
             id="default-sidebar"
             className="absolute top-0 h-screen -left-80 z-40 w-80 px-2 bg-white lg:bg-inherit lg:static shadow md:shadow-none"
@@ -65,7 +72,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg  bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <BiNews className="mdi mdi-widgets inline-flex mx-1" />
+                      <FaUserNurse className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">Doctors</span>
                   </a>
@@ -76,7 +83,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg  bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <FaChartPie className="mdi mdi-widgets inline-flex mx-1" />
+                      <FcDepartment className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">
                       departments
@@ -89,7 +96,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg  bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <BsPersonFill className="mdi mdi-widgets inline-flex mx-1" />
+                      <FiUsers className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">Users</span>
                   </a>
@@ -100,7 +107,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg  bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                      <MdBloodtype className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">BloodDonation </span>
                   </a>
@@ -111,7 +118,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg  bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                      <BiDonateBlood className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">BloodRequestSchema </span>
                   </a>
@@ -123,7 +130,7 @@ const Sidebar = ({ children }) => {
                   >
                     
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                      <BsFillCalendar2RangeFill className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">Appointments</span>
                   </a>
@@ -134,7 +141,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                      <MdBedroomChild className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">Bed</span>
                   </a>
@@ -145,7 +152,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                      <RiSurgicalMaskLine className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">Surgery</span>
                   </a>
@@ -156,7 +163,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                      <GiNurseFemale className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">Nurses</span>
                   </a>
@@ -167,7 +174,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                      <FaRegHospital className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">Hospitals</span>
                   </a>
@@ -178,7 +185,7 @@ const Sidebar = ({ children }) => {
                     className="flex items-center p-2 mb-1 mt-5 rounded-lg bg-white shadow-lg font-medium"
                   >
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
-                      <RiSettings3Fill className="mdi mdi-widgets inline-flex mx-1" />
+                      <GiTestTubes className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">MedicalTest</span>
                   </a>
