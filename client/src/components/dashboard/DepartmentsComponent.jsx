@@ -24,14 +24,14 @@ const DepartmentsComponent = () => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  const handleReadMore = (departments_id) => {
-    navigate(`/dashboard/departmentsedit/${departments_id}`);
+  const handleReadMore = (department_id) => {
+    navigate(`/dashboard/departmentsedit/${department_id}`);
   };
 
   return (
     <Grid container spacing={4}>
       {departments.map((department) => (
-        <Grid item xs={12} sm={6} md={4} key={department.departments_id}>
+        <Grid item xs={12} sm={6} md={4} key={department.department_id}>
           <Box width="350px">
             <Card>
               <CardContent>
@@ -47,7 +47,7 @@ const DepartmentsComponent = () => {
                 <Typography variant="body2" color="text.secondary">
                   Hospital ID: {department.hospital_id}
                 </Typography>
-                <Link to={`/dashboard/departmentsedit/${department.departments_id}`}>
+                <Link to={`/dashboard/departmentsedit/${department.department_id}`}>
                   <Button size="big" align="center">
                     Read More
                   </Button>

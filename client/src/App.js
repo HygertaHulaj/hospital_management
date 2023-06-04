@@ -35,6 +35,7 @@ import Hospitals from "./pages/dashboard/Hospitals"
 import MedicalTest from "./pages/dashboard/MedicalTest"
 
 import DepartmentsDashboard from "./pages/dashboard/departments"
+import DepartmentsEditDashboard from "./pages/dashboard/departmentsedit"
 import DepartmentsAdd from "./pages/dashboard/DepartmentsAdd"
 
 import DoctorsEdit  from "./pages/dashboard/doctorsedit"
@@ -64,6 +65,7 @@ function App() {
           <Route path="/dashboard/doctors" element={<DoctorsProfile/>} />
           <Route path="/dashboard/DoctorsProfileAdd" element={<DoctorsProfileAdd/>} />
           <Route path="/dashboard/departments" element={<DepartmentsDashboard/>} />
+          <Route path="/dashboard/departmentsedit/:department_id" element={<DepartmentsEditDashboard/>} />
           <Route path="/dashboard/DepartmentsAdd" element={<DepartmentsAdd/>} />
           <Route path="/dashboard/BedAdd" element={<BedAdd/>} />
           <Route path="/dashboard/SurgeryAdd" element={<SurgeryAdd/>} />
