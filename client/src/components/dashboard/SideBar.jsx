@@ -86,7 +86,7 @@ const Sidebar = ({ children }) => {
                       <FcDepartment className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
                     <span className="grow ml-3 text-gray-600">
-                      departments
+                      Departments
                     </span>
                   </a>
                 </li>
@@ -120,7 +120,7 @@ const Sidebar = ({ children }) => {
                     <div className="w-8 h-8 p-1 rounded-lg ml-2 flex justify-center items-center text-white bg-[#CB0C9F] shadow-md">
                       <BiDonateBlood className="mdi mdi-widgets inline-flex mx-1" />
                     </div>
-                    <span className="grow ml-3 text-gray-600">BloodRequestSchema </span>
+                    <span className="grow ml-3 text-gray-600">BloodRequest </span>
                   </a>
                 </li>
                 <li className="--set-active-tables-html">
